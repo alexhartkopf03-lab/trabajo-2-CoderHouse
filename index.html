@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Gestión de Productos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Gestión de Productos</h1>
+        <!-- NAV superior con acciones -->
+        <nav class="navbar">
+            <button class="btn agregar" id="btn-anadir">Agregar Producto</button>
+            <button class="btn eliminar" id="btn-eliminar">Eliminar producto</button>
+        </nav>
+    </header>
+    <main class="container">
+        <!-- Sección izquierda: productos -->
+        <section class="productos">
+            <div class="encabezado-productos">
+                <h2>Lista de Productos</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                        <th>Agregar al carrito</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-productos"></tbody>
+            </table>
+        </section>
+        <!-- Sección derecha: carrito -->
+        <aside class="carrito">
+            <h2>Carrito</h2>
+            <ul id="lista-carrito"></ul>
+            <div class="total">
+                <p>Total: <span id="total">$0</span></p>
+            </div>
+            <button class="btn cobrar" id="btn-cobrar">Cobrar</button>
+        </aside>
+    </main>
+    <footer>
+        <p>© 2025 - Sistema de Gestión de Tienda</p>
+    </footer>
+
+    <!-- MODALs -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Agregar Producto</h2>
+            <form id="formularioAgregarProducto">
+                <div class="form-group">
+                    <label for="codigo">Código</label>
+                    <input type="number" id="codigo" />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <input type="text" id="descripcion" />
+                </div>
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <!-- Campo editable: input + datalist -->
+                    <div class="combo-container">
+                        <input list="listaCategorias" id="categoria" placeholder="Selecciona o escribe" />
+                        <datalist id="listaCategorias">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" id="precio" step="0.01" />
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="btn-cerrar"">Cancelar</button>
+                <button class=" btn btn-save" id="btn-guardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-eliminar" id="modalEliminar">
+        <div class="modal">
+            <h2>Eliminar Producto</h2>
+            <form id="formularioEliminarProducto">
+                <div class="form-group">
+                    <label for="codigo">Código</label>
+                    <input type="number" id="codigoEliminar"/>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="btn-cancelar"">Cancelar</button>
+                <button class=" btn btn-save" id="btn-eliminar-modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

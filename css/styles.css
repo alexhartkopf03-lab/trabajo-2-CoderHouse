@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f3f4f6;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Encabezado y Navbar */
+header {
+  background: #0078d4;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin-bottom: 0.8rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex: 1;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+/* Sección de productos */
+.productos {
+  flex: 3;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.encabezado-productos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.productos h2 {
+  color: #0078d4;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #e6f0ff;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-weight: 600;
+}
+
+/* Carrito */
+.carrito {
+  flex: 1.2;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.carrito h2 {
+  color: #0078d4;
+  margin-bottom: 1rem;
+}
+
+.carrito ul {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  padding-right: 0.5rem;
+}
+
+.carrito li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.total {
+  margin: 1rem 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Botones */
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: #fff;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn.agregar {
+  background: #28a745;
+}
+
+.btn.eliminar {
+  background: #dc3545;
+}
+
+.btn.actualizar {
+  background: #007bff;
+}
+
+.btn.cobrar {
+  background: #6f42c1;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 0.8rem;
+  background: #f1f1f1;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/*-------------------- ESTILOS MODAL ---------------------*/
+
+/* Fondo oscuro del modal */
+.modal-overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.6);
+justify-content: center;
+align-items: center;
+}
+
+.modal-eliminar {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.6);
+justify-content: center;
+align-items: center;
+}
+
+/* Contenido del modal */
+.modal {
+background: #fff;
+width: 90%;
+max-width: 450px;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+animation: aparecer 0.25s ease;
+}
+
+
+@keyframes aparecer {
+from { transform: scale(0.9); opacity: 0; }
+to { transform: scale(1); opacity: 1; }
+}
+
+
+.modal h2 {
+margin-top: 0;
+margin-bottom: 20px;
+font-size: 20px;
+}
+
+
+.form-group {
+margin-bottom: 15px;
+display: flex;
+flex-direction: column;
+}
+
+
+label {
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+
+input, select {
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 6px;
+}
+
+
+/* Select editable estilo combobox */
+.combo-container {
+position: relative;
+}
+
+
+.combo-container input {
+width: 100%;
+}
+
+
+/* Botones */
+.modal-footer {
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+
+.btn {
+padding: 10px 15px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+
+.btn-cancel {
+background: #dc3545;
+color: #fff;
+}
+
+
+.btn-save {
+background: #28a745;
+color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .carrito {
+    order: -1;
+    max-height: 300px;
+  }
+
+  .encabezado-productos {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
