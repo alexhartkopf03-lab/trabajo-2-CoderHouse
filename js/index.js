@@ -39,13 +39,14 @@ function cargarProductos() {
 
 //CREO CARRITO Y LLAMO LA FUNCION DE MOSTRAR.
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-let total = 0;
+let total;
 cargarCarrito();
 
 //FUNCION MOSTRAR/ACTUALIZAR CARRITO
 function cargarCarrito() {
   const contCarrito = document.getElementById('lista-carrito');
   contCarrito.innerHTML = '';
+  total = 0;
   if (carrito.length > 0) {
     for (const itemCarrito of carrito) {
       let subtotal = itemCarrito.cantidad * itemCarrito.precio;
@@ -58,13 +59,13 @@ function cargarCarrito() {
       const btnElimProd = document.getElementById(`itemCarrito${itemCarrito.codigo}`);
       btnElimProd.addEventListener('click', () => eliminarProductoCarrito(itemCarrito.codigo));
     }
-    const totalCarrito = document.getElementById('total');
-    totalCarrito.innerText = `$${total}`;
   } else {
     const aviso = document.createElement('li');
     aviso.innerHTML = 'No hay productos en el carrito';
     contCarrito.appendChild(aviso);
   }
+  const totalCarrito = document.getElementById('total');
+  totalCarrito.innerText = `$${total}`;
 }
 
 //FUNCION AGREGAR AL CARRITO.
@@ -95,21 +96,22 @@ function eliminarProductoCarrito(codigo) {
 }
 
 //FUNCION CARGAR CATEGORIAS EXISTENTES EN MODAL AÑADIR PRODUCTO
-function cargarCategorias(){
-const categorias = [];
-for (const producto of productos) {
-  let buscarCat = categorias.find(p => p === producto.categoria);
-  if (buscarCat === undefined) {
-    categorias.push(producto.categoria);
+function cargarCategorias() {
+  const categorias = [];
+  for (const producto of productos) {
+    let buscarCat = categorias.find(p => p === producto.categoria);
+    if (buscarCat === undefined) {
+      categorias.push(producto.categoria);
+    }
+  }
+  const selectModal = document.getElementById('listaCategorias');
+  selectModal.innerHTML = '';
+  for (const categoria of categorias) {
+    const option = document.createElement('option');
+    option.setAttribute('value', categoria);
+    selectModal.appendChild(option);
   }
 }
-const selectModal = document.getElementById('listaCategorias');
-selectModal.innerHTML = '';
-for (const categoria of categorias) {
-  const option = document.createElement('option');
-  option.setAttribute('value', categoria);
-  selectModal.appendChild(option);
-}}
 
 //FUNCION ABRIR MODAL AÑADIR PRODUCTO
 const btnAnadir = document.getElementById('btn-anadir');
