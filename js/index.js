@@ -8,9 +8,6 @@ if (!localStorage.getItem('productos')) {
     { codigo: "1004", descripcion: "Fideos spaghetti Matarazzo 500g", categoria: "Almacen", precio: 950 }
   ];
   localStorage.setItem('productos', JSON.stringify(productosDefault));
-  console.log('Los productos se guardaron en el localStorage');
-} else {
-  console.log('Productos cargados desde el localStorage');
 }
 
 // SE CARGAN LOS PRODUCTOS DESDE EL LOCALSTORAGE.
@@ -74,7 +71,6 @@ function agregarCarrito(codigo) {
   if (buscarCarrito !== undefined) {
     buscarCarrito.cantidad++;
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log('Cantidad del producto actualizada');
     cargarCarrito();
   } else {
     let buscarProducto = productos.find(p => p.codigo === codigo);
@@ -82,7 +78,6 @@ function agregarCarrito(codigo) {
     let precio = buscarProducto.precio;
     carrito.push({ codigo: codigo, descripcion: descrip, precio: precio, cantidad: 1 });
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log('Producto agregado al carrito');
     cargarCarrito();
   }
 }
@@ -91,7 +86,6 @@ function agregarCarrito(codigo) {
 function eliminarProductoCarrito(codigo) {
   carrito = carrito.filter(p => p.codigo !== codigo);
   localStorage.setItem('carrito', JSON.stringify(carrito));
-  console.log('Producto eliminado del carrito');
   cargarCarrito();
 }
 
@@ -135,7 +129,6 @@ btnGuardar.addEventListener('click', () => {
     productos.push({ codigo: inputCodigo, descripcion: inputDescripcion, categoria: inputCategoria, precio: inputPrecio });
     localStorage.setItem('productos', JSON.stringify(productos));
     document.getElementById('formularioAgregarProducto').reset();
-    console.log('Producto agregado al localStorage');
     alert('Producto añadido con exito!');
     cargarProductos();
     cargarCategorias();
@@ -158,15 +151,11 @@ btnEliminar.addEventListener('click', () => {
   if (verifCodigo === undefined) {
     alert('Codigo del producto no existe en tu lista');
   } else {
-    let confirmacion = confirm(`Seguro que quieres eliminar el producto con el codigo ${codigoEliminar}`);
-    if (confirmacion) {
-      productos = productos.filter(p => p.codigo !== codigoEliminar);
-      localStorage.setItem('productos', JSON.stringify(productos));
-      document.getElementById('formularioEliminarProducto').reset();
-      alert('Producto eliminado')
-      console.log(`Producto con el codigo ${codigoEliminar} eliminado`);
-      cargarProductos();
-    }
+    productos = productos.filter(p => p.codigo !== codigoEliminar);
+    localStorage.setItem('productos', JSON.stringify(productos));
+    document.getElementById('formularioEliminarProducto').reset();
+    alert('Producto eliminado')
+    cargarProductos();
   }
 });
 
